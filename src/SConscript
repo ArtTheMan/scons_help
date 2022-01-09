@@ -1,0 +1,15 @@
+"""
+SCons src/SConscript
+"""
+
+Import("env")
+Import("arch")
+Import("platform")
+
+print(f"Loading SConscript Arch={arch} Platform={platform}")
+
+platform_env = env.Clone(
+    CPPDEFINES=[{"PLATFORM": platform}, {"ARCH": arch}, "$CPPDEFINES"]
+)
+
+platform_env.Program("hello", "hello.cpp")
